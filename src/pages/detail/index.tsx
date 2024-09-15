@@ -1,17 +1,17 @@
+import { useState, useEffect } from "react"
 import { useParams, useNavigate } from "react-router-dom"
 import { CardProps } from '../home';
 import styles from './detail.module.css'
-import { useState, useEffect } from "react"
 
 interface ResponseData {
     data: CardProps
 }
 interface ErrorData {
-    error: string
+    message: string
 }
 type DataProps = ResponseData | ErrorData
 
-export function Detail(){
+export function Detail() {
 
     const { card } = useParams();
     const navigate = useNavigate();
@@ -21,17 +21,18 @@ export function Detail(){
 
 
     useEffect(() => {
-        async function getCard() {
-            try{
-                fetch(`https://api.pokemontcg.io/v2/cards?q=id:${card}`)
-                .then(response => response.json())
-                .then((data: DataProps) => {
 
-                    if("error" in data){
+        async function getCard(){
+            try{
+                fetch(`https://api.pokemontcg.io/v2/cards/${card}`)
+                .then(response => response.json())
+                .then((data:DataProps) => {
+
+                    if("message" in data){
                         navigate("/");
                         return
                     }
-
+                    
                     const price = Intl.NumberFormat("en-US", {
                         style:"currency",
                         currency:"EUR",
@@ -43,17 +44,16 @@ export function Detail(){
                         formatedASP: price.format(Number(data.data.formatedASP))
                     }
 
-                    setCards(resultData)
-                    setLoading(false)
+                   setCards(resultData)
+                   setLoading(false)
                 })
-            } catch(err){
-                navigate("/")
-            }
+
+            }catch(err){
+                navigate("/")        
         }
-
-
-        getCard();
-    }, [card])
+    }
+        getCard()
+}, [card])
 
     if(loading){
         return(
@@ -65,18 +65,14 @@ export function Detail(){
 
 
     return(
-        <div className={styles.container}>
 
-            <section className={styles.img}>
+        <div>
+            <img
+            src={cards?.images.small} 
+            alt="imagem carta" />
 
-            <h1> {cards?.abilities} </h1>
-
-            </section>
-            
-
-
-            <section className={styles.info}>
-                <h1> oi  </h1>
+            <section>
+                
             </section>
 
         </div>

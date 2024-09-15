@@ -31,8 +31,8 @@ export interface CardProps{
     images: any;
     tcgplayer?: any;
     cardmarket?: any;
-    formatedTrendPrice?: string;
-    formatedASP?: string;
+    formatedTrendPrice?: any;
+    formatedASP?: any;
 }
 interface CardProp{
     data: CardProps[]
