@@ -9,7 +9,7 @@ export interface CardProps{
     supertype: string;
     subtypes: string[];
     hp?: string;
-    types?: string;
+    types?: string[];
     evolesFrom?: string;
     evolvesTo?: string[];
     rules?: string[];
@@ -31,6 +31,8 @@ export interface CardProps{
     images: any;
     tcgplayer?: any;
     cardmarket?: any;
+    formatedTrendPrice?: string;
+    formatedASP?: string;
 }
 interface CardProp{
     data: CardProps[]
@@ -53,17 +55,22 @@ export function Home(){
         .then((data: CardProp) => {
             const cardData = data.data;
 
+            const price = Intl.NumberFormat("en-US", {
+                style:"currency",
+                currency:"EUR",
+            })
+
             const formatedResult = cardData.map((item) => {
                 const formated = {
-                    ...item
+                    ...item,
+                    formatedTrendPrice: price.format(Number(item.cardmarket.prices.trendPrice)),
+                    formatedASP: price.format(Number(item.cardmarket.prices.averageSellPrice))
                 }
 
                 return formated
             })
 
-            const listCards = [ ...cards, ...formatedResult];
-
-            console.log(listCards);
+            const listCards = [...cards, ...formatedResult];
 
             setCards(listCards);
 
@@ -125,7 +132,7 @@ export function Home(){
                         data-label="Name" > 
                         
                          <div className={styles.name}> 
-                            <Link to={`/detail/${item.name}`}> 
+                            <Link to={`/detail/${item.id}`}> 
                             <span> {item.name} </span>
                             </Link>
                          </div>
@@ -134,8 +141,8 @@ export function Home(){
                         <td data-label="Rarity" className={styles.tdLabel}> {item.rarity}</td>
                         <td data-label="Type" className={styles.tdLabel} > {item.types[0]}</td>
                         <td data-label="Set" className={styles.tdLabel}> {item.set.name}  </td>
-                        <td data-label="TrendPrice" className={styles.tdLabel}> { item.cardmarket.prices.trendPrice} </td>
-                        <td data-label="ASP" className={styles.tdLabel}> { item.cardmarket.prices.averageSellPrice} </td>
+                        <td data-label="TrendPrice" className={styles.tdLabel}> {item.formatedTrendPrice} </td>
+                        <td data-label="ASP" className={styles.tdLabel}> { item.formatedASP} </td>
                         </tr>
                     ))}
 
