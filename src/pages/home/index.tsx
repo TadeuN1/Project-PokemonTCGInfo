@@ -5,7 +5,7 @@ import { Link, useNavigate } from "react-router-dom";
 
 export interface CardProps{
     id: string;
-    name: string;
+    name: any;
     supertype: string;
     subtypes: string[];
     hp?: string;
@@ -20,7 +20,7 @@ export interface CardProps{
     resistances?: any;
     retreatCost?: string[];
     convertedRetreatCost?: number;
-    set: any;
+    set: string;
     number: string;
     artist?: string;
     rarity: string;

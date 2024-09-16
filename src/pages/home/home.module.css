@@ -78,3 +78,55 @@ table td{
     border-radius: 8px;
     display: flex;
 }
+
+@media screen and (max-width: 600px){
+
+    table{
+        margin: 0;
+    }
+
+    table thead{
+        border: none;
+        clip: rect(0 0 0 0);
+        height: 1px;
+        margin: -1px;
+        overflow: hidden;
+        position: absolute;
+        width: 1px;
+        padding: 0;
+    }
+
+    .tr{
+        border-bottom: 1px solid #DDD;
+        display: block;
+        margin-bottom: 14px;
+    }
+
+    table td{
+        border-bottom: 1px solid rgba(221, 221, 221, 0.170);
+        display: block;
+        text-align: right;
+        font-size: 14px;
+    }
+
+    table td::before{
+        content: attr(data-label);
+        float: left;
+        font-weight: bold;
+        text-transform: uppercase;
+    }
+
+    table td:last-child{
+        border-bottom: 0;
+    }
+    td:first-child,
+    th:first-child{
+    border-radius: 0;
+    }
+
+    td:last-child,
+    th:last-child{
+    border-radius: 0;
+    }
+
+}

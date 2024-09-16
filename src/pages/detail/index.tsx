@@ -66,13 +66,42 @@ export function Detail() {
 
     return(
 
-        <div>
+        <div className={styles.container}>
             <img
             src={cards?.images.small} 
             alt="imagem carta" />
 
             <section>
-                
+                <div className={styles.info}>
+                    <h1 className={styles.name}> {cards?.name} </h1>
+
+                <table className={styles.table}>
+                <tr className={styles.row}>
+                <th>Set</th>
+                <th>{cards?.set.name}</th>
+                </tr>
+
+                <tr className={styles.row}>
+                <td>Series</td>
+                <td>{cards?.set.series}</td>
+                </tr>
+
+                <tr className={styles.row}>
+                <td>Rarity</td>
+                <td>{cards?.rarity}</td>
+                </tr>
+
+                <tr className={styles.row}>
+                <td>Type</td>
+                <td>{cards?.types[0]}</td>
+                </tr>
+
+                <tr className={styles.row}>
+                <td>Average Sell Price (€) </td>
+                <td>{cards?.cardmarket.prices.averageSellPrice}</td>
+                </tr>
+                    </table>
+                </div>
             </section>
 
         </div>

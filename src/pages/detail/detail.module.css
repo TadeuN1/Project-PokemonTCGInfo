@@ -1,4 +1,44 @@
-.teste{
+.container{
+    display: flex;
+    margin: 100px;
+    padding: 0  auto;
+}
+
+.info{
+    height: 100%;
+}
+
+.name{
     color: white;
-    font-size: 32px;
+    text-align: center;
+    padding-top: 10px;
+}
+
+.table{
+    padding-top: 15px;
+}
+
+.row{
+    color: white;
+    font-weight: bold;
+}
+
+@media screen and (max-width: 600px){
+
+  .container  img{
+        width: 50%;
+        display: flex;
+        margin: 0 auto;
+    }
+
+    .container{
+        display: flex;
+        flex-direction: column;
+    }
+
+    .row{
+        display: flex;
+        justify-content: space-between;
+    }
+
 }
