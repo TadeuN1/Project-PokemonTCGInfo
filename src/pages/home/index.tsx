@@ -80,7 +80,7 @@ export function Home(){
         e.preventDefault();
 
         if(input === '') return;
-        navigate(`/detail/${input}`)
+        navigate(`/list/${input}`)
     }
 
     function handleGetMore(){

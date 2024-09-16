@@ -17,7 +17,7 @@ export function Detail() {
     const navigate = useNavigate();
 
     const [ cards, setCards ] = useState<CardProps>()
-    const [ loading, setLoading] = useState(false)
+    const [ loading, setLoading] = useState(true)
 
 
     useEffect(() => {
@@ -58,7 +58,7 @@ export function Detail() {
     if(loading){
         return(
             <div className={styles.container}>
-                <h4 className={styles.center}> Carregando Detalhes... </h4>
+                <h4 className={styles.name}> Carregando Detalhes... </h4>
             </div>
         )
     }
