@@ -3,7 +3,6 @@ import { Layout } from "./components/layout";
 import { Home } from "./pages/home";
 import { Detail } from "./pages/detail";
 import { Notfound } from "./pages/notfound";
-import { Search } from "./pages/search";
 
 
 
@@ -17,11 +16,6 @@ const router = createBrowserRouter([
             {
                 path:"/",
                 element: <Home />
-            },
-            {
-                path:"/list/:name",
-                element: <Search />
-
             },
             {
                 path:"/detail/:card",

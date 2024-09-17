@@ -1,11 +1,10 @@
-import { FormEvent, useState, useEffect } from "react"
-import { BsSearch } from "react-icons/bs"
+import { useState, useEffect } from "react"
 import styles from './home.module.css'
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 export interface CardProps{
     id: string;
-    name: any;
+    name: any[];
     supertype: string;
     subtypes: string[];
     hp?: string;
@@ -20,7 +19,7 @@ export interface CardProps{
     resistances?: any;
     retreatCost?: string[];
     convertedRetreatCost?: number;
-    set: string;
+    set: string[];
     number: string;
     artist?: string;
     rarity: string;
@@ -38,13 +37,12 @@ interface CardProp{
     data: CardProps[]
 }
 export function Home(){
-    const [pagesize, setPagesize] = useState(5)
+    const [pagesize, setPagesize] = useState(60)
     const [cards, setCards] = useState<CardProps[]>([])
-    const [input, setInput] = useState("")
-    const navigate = useNavigate();
 
     useEffect(() => {
         getData();
+        setPagesize(pagesize)
     }, [pagesize])
 
 
@@ -76,35 +74,9 @@ export function Home(){
 
         })
     }
-    function handleSubmit(e: FormEvent){
-        e.preventDefault();
-
-        if(input === '') return;
-        navigate(`/list/${input}`)
-    }
-
-    function handleGetMore(){
-        if(pagesize === 5){
-            setPagesize(10);
-            return;
-        }
-
-        setPagesize(pagesize + 10)
-    }
 
     return(
         <main className={styles.container}>
-            <form onSubmit={handleSubmit} className={styles.form}>
-                <input
-                type="text"
-                placeholder="Digite o nome do pokémon..."
-                value={input}
-                onChange={ (e) => setInput(e.target.value)}
-                />
-                <button type='submit'>
-                   <BsSearch size={30} color="#FFF" />
-                </button>
-            </form>
             
 
 
@@ -152,9 +124,6 @@ export function Home(){
                 </tbody>
             </table>
 
-            <button className={styles.buttonMore} onClick={handleGetMore}>
-                More Cards
-            </button>
         </main>
     )
 

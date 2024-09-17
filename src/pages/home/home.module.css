@@ -1,27 +1,6 @@
 .container{
     margin: 0 14px;
 }
-
-.form{
-    width: 100%;
-    display: flex;
-    gap: 20px;
-}
-
-.form input{
-    width: 100%;
-    height: 48px;
-    border: 0;
-    padding: 0 8px;
-    border-radius: 6px;
-    outline: none;
-    font-size: 18px;
-}
-
-.form button {
-    background: transparent;
-}
-
 table{
     border-collapse: separate;
     border-spacing: 0 6px;
